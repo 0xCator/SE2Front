@@ -1,1 +1,37 @@
-<p>landingpage works!</p>
+<mat-toolbar color="primary">
+    <span>AlliGurney</span>
+    <span class="spacer"></span>
+    <button mat-flat-button color="primary" [routerLink]="['login']">Login/Register</button>
+</mat-toolbar>
+
+<div class="row">
+    <div class="left">
+        <h1><b>Welcome to AlliGurney</b></h1>
+        <br>
+        <p>
+            Our mission is to connect patients with ambulances, as well as relatives 
+            who are not always around.
+        </p>
+        <br>
+        <p>
+            If the patient is about to faint, no worries, we will instantly request an ambulance car
+            to the patient's location and notify their relatives, allowing for a higher chance of their
+            survival.
+        </p>
+        <br><br>
+        <p>
+            Just pair one of our bracelets to get started!
+        </p>
+        <br><br>
+        <div style="text-align: center;">
+            <button mat-raised-button color="primary" [routerLink]="['login']">
+                Get started
+            </button>
+        </div>
+    </div>
+    <div class="right">
+        <div class="img-container">
+            <img src="../../../assets/Landing/bracelet-large.jpg">
+        </div>
+    </div>
+</div>
