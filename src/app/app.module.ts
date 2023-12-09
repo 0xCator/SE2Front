@@ -7,6 +7,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card'
+import {MatTableModule} from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -60,7 +62,9 @@ import { MedicalHistoryComponent } from './Views/normal-user/patient/medical-his
     MatSidenavModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
