@@ -1,0 +1,10 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <a mat-button [routerLink]="['..', 'patient']" class="sidenav-button">Home</a>
+        <a mat-button [routerLink]="['relatives']" class="sidenav-button">My relatives</a>
+        <a mat-button [routerLink]="['medical-history']" class="sidenav-button">Medical History</a>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

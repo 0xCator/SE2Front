@@ -1,0 +1,19 @@
+<mat-toolbar color="warn">
+    <span>Welcome, Admin!</span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+        <mat-icon fontIcon="logout"></mat-icon>
+    </button>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <a mat-button [routerLink]="['..', 'admin']" class="sidenav-button">Home</a>
+        <a mat-button [routerLink]="['cars']" class="sidenav-button">Cars</a>
+        <a mat-button [routerLink]="['hospitals']" class="sidenav-button">Hospitals</a>
+        <a mat-button [routerLink]="['users']" class="sidenav-button">Users</a>
+        <a mat-button [routerLink]="['ambulance-managers']" class="sidenav-button">Ambulance Managers</a>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
