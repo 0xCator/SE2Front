@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./medical-history.component.css']
 })
 export class MedicalHistoryComponent {
+  message: string = '';
+  isSubmitted: boolean = false;
 
+  onSubmit() {
+    this.isSubmitted = true;
+}
+  onInput() {
+    this.isSubmitted = false;
+  }
 }

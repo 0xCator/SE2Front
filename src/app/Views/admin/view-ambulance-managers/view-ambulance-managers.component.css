@@ -1,0 +1,13 @@
+.cardForm{
+    background-color: primary;
+}
+mat-form-field{
+    margin: 10px;
+}
+.cardInput{
+    display: inline;
+}
+.cardInput button{
+    text-align: right;
+    color: blue;
+}

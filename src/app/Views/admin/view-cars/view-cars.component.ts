@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 export interface CarTable {
   carName: string;
   driverName: string;
-  weight: string;
-  symbol: string;
+  licensePlate: string;
+  state: string;
 }
 
 const ELEMENT_DATA: CarTable[] = [
