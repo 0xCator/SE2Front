@@ -1,0 +1,17 @@
+.historyCard{
+    padding: 10px;
+    margin: 20px;
+}
+
+mat-card-header{
+    padding-bottom: 20px;
+}
+
+mat-card-content{
+    display: flex;
+    flex-direction: column;    
+}
+
+button{
+    margin: 20px;
+}

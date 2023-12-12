@@ -1,14 +1,14 @@
-<mat-card class="example-card">
+<mat-card class="historyCard">
     <mat-card-header>
       <mat-card-title>Manage Medical History</mat-card-title>
-      <mat-card-subtitle></mat-card-subtitle>
+      <mat-card-subtitle>You can manage your medical history here</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <mat-form-field>
-            <mat-label>You can manage your medical history here</mat-label>
-            <textarea matInput [(ngModel)]="message" (input)="onInput()"></textarea>
+          <mat-form-field>
+              <mat-label>Add Medical History</mat-label>
+              <textarea matInput [(ngModel)]="message" (input)="onInput()"></textarea>
           </mat-form-field>
-          <button mat-raised-button color="Accent" type="submit" [disabled]="!message || isSubmitted" (click)="onSubmit()">Submit</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!message || isSubmitted" (click)="onSubmit()">Submit</button>
     </mat-card-content>
   </mat-card>
   

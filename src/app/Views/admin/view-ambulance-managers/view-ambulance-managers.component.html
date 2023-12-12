@@ -5,7 +5,7 @@
     <div class="userView">
         <ng-container *ngIf="disabled" [formGroup]="formgroup" class="cardInput">
                 <mat-form-field>
-                <mat-label>Username</mat-label>  
+                    <mat-label>Username</mat-label>  
                     <input matInput formControlName="username" required>
                 </mat-form-field>
                 <mat-form-field>
@@ -16,6 +16,7 @@
         </ng-container>
     </div>
 </div> 
+
 <div class="tableView">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 

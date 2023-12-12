@@ -1,0 +1,51 @@
+.cardForm{
+    background-color: primary;
+}
+
+mat-form-field{
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.addRelative{
+    display: flex;    
+    flex-direction: column;
+}
+
+.add{
+    justify-content: center;
+    display: flex;
+    padding: 15px;
+    margin: 5px;
+}
+
+.relativeView{
+    display: flex; 
+    align-items: center;   
+    justify-content: center;
+}
+
+button.submitBtn{
+    padding: 20px 20px;
+    margin: 50px;
+}
+
+.tableView{
+    margin: 20px;
+    border-radius: 30px;
+    box-shadow: 3px;
+}
+
+table{
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+button{
+    cursor: pointer;
+}

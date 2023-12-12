@@ -1,25 +1,28 @@
-<div>
+<div class="addHospital">
+    <div class="add">
     <button mat-raised-button color="primary" (click)="disabled=true">Add Ambulance Manager</button>
-        <div>
-            <ng-container *ngIf="disabled">
+    </div>
+        <div class="hospitalView">
+            <ng-container *ngIf="disabled" [formGroup]="formgroup" class="cardInput">
                 <mat-form-field>
                     <mat-label>Enter Hospital Name:</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="hospitalName" required>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Enter Latitude</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="latitude" required>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Enter Longitude</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="longitude" required>
                 </mat-form-field>
-                <button mat-raised-button color="Accent" (click)="disabled=false">Submit</button>
+                <button mat-raised-button color="primary" class="submitBtn" (click)="disabled=false" [disabled]="formgroup.invalid">Submit</button>
             </ng-container>
         </div>
     
 </div>
-    
+
+<div class="tableView">    
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <ng-container matColumnDef="hospitalName">
@@ -47,3 +50,4 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>

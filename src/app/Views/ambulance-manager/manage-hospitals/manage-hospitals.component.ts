@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import {FormBuilder,FormGroup,FormControl,FormControlName,Validators} from '@angular/forms';
 export interface HospitalsTable {
   hospitalName: string;
   locLatitude: string;
@@ -20,4 +20,15 @@ export class ManageHospitalsComponent {
   displayedColumns: string[] = ['hospitalName', 'locLatitude', 'locLongitude', 'remove'];
   dataSource = ELEMENT_DATA;
   disabled=false;
+  formgroup!:FormGroup;
+
+  constructor(private formbuilder:FormBuilder){
+  }
+  ngOnInit(){
+    this.formgroup = this.formbuilder.group({
+      hospitalName:['',Validators.required],
+      latitude:['',[Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      longitude:['',[Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+    });
+  }
 }
