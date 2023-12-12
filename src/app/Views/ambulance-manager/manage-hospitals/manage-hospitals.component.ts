@@ -27,8 +27,8 @@ export class ManageHospitalsComponent {
   ngOnInit(){
     this.formgroup = this.formbuilder.group({
       hospitalName:['',Validators.required],
-      latitude:['',[Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-      longitude:['',[Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      latitude:['',[Validators.required, Validators.pattern(/^\d+(?:\.\d+)*$/)]],
+      longitude:['',[Validators.required, Validators.pattern(/^\d+(?:\.\d+)*$/)]],
     });
   }
 }
