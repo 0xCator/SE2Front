@@ -1,20 +1,22 @@
-<div>
-    <button mat-raised-button class="add" color="primary" (click)="disabled=true">Add Ambulance Manager</button>
-        <div>
-            <ng-container *ngIf="disabled" class="cardInput">
+<div class="addAmbManager">
+    <div class="add" >
+        <button mat-raised-button color="primary" (click)="disabled=true">Add Ambulance Manager</button>
+    </div>
+    <div class="userView">
+        <ng-container *ngIf="disabled" [formGroup]="formgroup" class="cardInput">
                 <mat-form-field>
-                    <mat-label>Username</mat-label>
-                    <input matInput>
+                <mat-label>Username</mat-label>  
+                    <input matInput formControlName="username" required>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Password</mat-label>
-                    <input matInput>
+                    <input type="password" matInput formControlName="password" required>
                 </mat-form-field>
-                <button mat-raised-button color="Accent" (click)="disabled=false">Submit</button>
-            </ng-container>
-        </div>
-
-<div>
+            <button mat-raised-button color="primary" class="submitBtn" (click)="disabled=false" [disabled]="formgroup.invalid">Submit</button>
+        </ng-container>
+    </div>
+</div> 
+<div class="tableView">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <ng-container matColumnDef="managerUsername">

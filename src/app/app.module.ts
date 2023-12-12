@@ -11,8 +11,6 @@ import { MatCardModule } from '@angular/material/card'
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingpageComponent } from './Views/landingpage/landingpage.component';
@@ -33,7 +31,7 @@ import { RelativeComponent } from './Views/normal-user/relative/relative.compone
 import { PatientMainComponent } from './Views/normal-user/patient/patient-main/patient-main.component';
 import { ManageRelativesComponent } from './Views/normal-user/patient/manage-relatives/manage-relatives.component';
 import { MedicalHistoryComponent } from './Views/normal-user/patient/medical-history/medical-history.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +70,6 @@ import { MedicalHistoryComponent } from './Views/normal-user/patient/medical-his
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
