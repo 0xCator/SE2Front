@@ -1,0 +1,19 @@
+.tableView{
+    margin: 20px;
+    border-radius: 30px;
+    box-shadow: 3px;
+}
+
+table{
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+button{
+    cursor: pointer;
+}
