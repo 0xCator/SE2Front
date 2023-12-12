@@ -1,0 +1,15 @@
+.centeredCard {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+}
+
+mat-card {
+    width: 50vw;
+    text-align: center;
+}
+
+mat-form-field {
+    width: -webkit-fill-available;
+}
