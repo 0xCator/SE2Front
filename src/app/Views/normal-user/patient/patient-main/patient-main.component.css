@@ -2,7 +2,26 @@
     margin: 10px;
 }
 .tokenCard{
-    width: 75%;
+    width: 25%;
     margin: 15px 15px 15px 15px;
     padding: 20px;
+}
+.columnFlex{
+    display: flex;
+    flex-direction: column;
+    margin:20px;
+}
+.rowFlex{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+}
+
+.mat-mdc-card-content:last-child {
+    padding: 10px;
+}
+
+.mat-mdc-card-content:first-child {
+    padding: 10px;
 }
