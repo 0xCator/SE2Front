@@ -1,7 +1,7 @@
 <div class="tokenDiv">
-    <mat-card class="tokenCard" *ngIf="isPaired">
+    <mat-card class="tokenCard" *ngIf="!isPaired">
     <p>
-        Your Token: token
+        Your Token: <b>{{token}}</b>
     </p>
     </mat-card>
 </div>
@@ -13,11 +13,11 @@
         <div class="rowFlex">
             <mat-card-content>
                 <mat-card-subtitle>Heart Rate</mat-card-subtitle>  
-                <p>Heart Rate Goes here</p>
+                <p><b>{{heartRate}}</b></p>
             </mat-card-content>
             <mat-card-content>
                 <mat-card-subtitle>Blood Pressure</mat-card-subtitle>
-                <p>Blood Pressure Goes here</p>
+                <p><b>{{bloodPressure}}</b></p>
             </mat-card-content>
         </div>  
         <button mat-raised-button color="primary">View Generated Report</button>  

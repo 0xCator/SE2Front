@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
-    <span>Welcome, -username-!</span>
+    <span>Welcome, {{fullName}}!</span>
     <span class="spacer"></span>
     <button mat-flat-button color="primary" [routerLink]="['patient']">Patient</button>
-    <button mat-flat-button color="primary" [routerLink]="['relative']">Relative</button>
+    <button mat-flat-button *ngIf="isRelative" color="primary" [routerLink]="['relative']">Relative</button>
     <span class="spacer"></span>
     <button mat-icon-button>
         <mat-icon fontIcon="logout"></mat-icon>
