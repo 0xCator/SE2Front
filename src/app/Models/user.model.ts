@@ -1,7 +1,7 @@
 import { UserService } from 'src/app/Services/user.service';
 
 export interface userModel {
-    id: string;
+    _id: string;
     username: string;
     password: string;
     userType: number;

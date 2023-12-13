@@ -20,8 +20,6 @@ import { LoginSignComponent } from './Views/login-sign/login-sign.component';
 import { NormalUserComponent } from './Views/normal-user/normal-user.component';
 import { AmbulanceManagerComponent } from './Views/ambulance-manager/ambulance-manager.component';
 import { AdminComponent } from './Views/admin/admin.component';
-import { ViewCarsComponent } from './Views/admin/view-cars/view-cars.component';
-import { ViewHospitalsComponent } from './Views/admin/view-hospitals/view-hospitals.component';
 import { ViewUsersComponent } from './Views/admin/view-users/view-users.component';
 import { ViewAmbulanceManagersComponent } from './Views/admin/view-ambulance-managers/view-ambulance-managers.component';
 import { AdminMainComponent } from './Views/admin/admin-main/admin-main.component';
@@ -42,8 +40,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NormalUserComponent,
     AmbulanceManagerComponent,
     AdminComponent,
-    ViewCarsComponent,
-    ViewHospitalsComponent,
     ViewUsersComponent,
     ViewAmbulanceManagersComponent,
     AdminMainComponent,
