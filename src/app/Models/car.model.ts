@@ -1,4 +1,4 @@
-export interface Car {
+export interface CarModel {
     _id: any;
     driverName?: string;
     licensePlate?: string;

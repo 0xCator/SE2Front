@@ -60,7 +60,7 @@ export class ManageHospitalsComponent implements OnInit{
             latitude: this.formgroup.value.latitude
           }).subscribe({
             next: (val) => {
-              this.formgroup.setValue({hospitalName: '', longitude: '', latitude: ''});
+              this.formgroup.reset();
               this.creationError = '';
               this.disabled = false;
               this.fillGroup();

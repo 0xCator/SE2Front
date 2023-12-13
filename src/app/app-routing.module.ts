@@ -6,8 +6,6 @@ import { NormalUserComponent } from './Views/normal-user/normal-user.component';
 import { AmbulanceManagerComponent } from './Views/ambulance-manager/ambulance-manager.component';
 import { AdminComponent } from './Views/admin/admin.component';
 import { ViewUsersComponent } from './Views/admin/view-users/view-users.component';
-import { ViewHospitalsComponent } from './Views/admin/view-hospitals/view-hospitals.component';
-import { ViewCarsComponent } from './Views/admin/view-cars/view-cars.component';
 import { ViewAmbulanceManagersComponent } from './Views/admin/view-ambulance-managers/view-ambulance-managers.component';
 import { AdminMainComponent } from './Views/admin/admin-main/admin-main.component';
 import { AmbulanceMainComponent } from './Views/ambulance-manager/ambulance-main/ambulance-main.component';
@@ -40,8 +38,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
       { path: '', component: AdminMainComponent },
       { path: 'users', component: ViewUsersComponent },
-      { path: 'hospitals', component: ViewHospitalsComponent },
-      { path: 'cars', component: ViewCarsComponent },
+      { path: 'hospitals', component: ManageHospitalsComponent },
+      { path: 'cars', component: ManageCarsComponent },
       { path: 'ambulance-managers', component: ViewAmbulanceManagersComponent}
     ] 
   }

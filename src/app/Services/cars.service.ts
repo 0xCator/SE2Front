@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Car } from '../Models/car.model';
+import { CarModel } from '../Models/car.model';
 
 const BASEURL = 'http://localhost:3000/api/cars';
 @Injectable({
@@ -11,24 +11,24 @@ export class CarService {
   
   constructor(private http: HttpClient) { }
 
-  getAllCars(): Observable<Car[]> {
-    return this.http.get<Car[]>(BASEURL);
+  getAllCars(): Observable<CarModel[]> {
+    return this.http.get<CarModel[]>(BASEURL);
   }
 
-  getCar(carID: any): Observable<Car> {
-    return this.http.get<Car>(BASEURL+"/"+carID);
+  getCar(carID: any): Observable<CarModel> {
+    return this.http.get<CarModel>(BASEURL+"/"+carID);
   }
 
-  createCar(data: any): Observable<Car> {
-    return this.http.post<Car>(BASEURL, data);
+  createCar(data: any): Observable<CarModel> {
+    return this.http.post<CarModel>(BASEURL, data);
   }
 
-  updateCar(carID: any, data: any): Observable<Car> {
-    return this.http.patch<Car>(BASEURL+"/"+carID, data);
+  updateCar(carID: any, data: any): Observable<CarModel> {
+    return this.http.patch<CarModel>(BASEURL+"/"+carID, data);
   }
 
   deleteCar(carID: any) {
-    return this.http.delete<Car>(BASEURL+"/"+carID);
+    return this.http.delete<CarModel>(BASEURL+"/"+carID);
   }
   
 }
