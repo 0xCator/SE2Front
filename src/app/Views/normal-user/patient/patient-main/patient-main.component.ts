@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./patient-main.component.css']
 })
 export class PatientMainComponent {
+isPaired=true;
 
 }

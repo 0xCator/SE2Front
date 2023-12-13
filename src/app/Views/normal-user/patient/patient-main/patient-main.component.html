@@ -1,1 +1,25 @@
-<p>patient-main works!</p>
+<div class="tokenDiv">
+    <mat-card class="tokenCard" *ngIf="isPaired">
+    <p>
+        Your Token: token
+    </p>
+    </mat-card>
+</div>
+<div class="columnFlex" *ngIf="isPaired">
+    <mat-card class="historyCard">
+        <mat-card-header>
+          <mat-card-title>View Readings</mat-card-title>
+        </mat-card-header>
+        <div class="rowFlex">
+            <mat-card-content>
+                <mat-card-subtitle>Heart Rate</mat-card-subtitle>  
+                <p>Heart Rate Goes here</p>
+            </mat-card-content>
+            <mat-card-content>
+                <mat-card-subtitle>Blood Pressure</mat-card-subtitle>
+                <p>Blood Pressure Goes here</p>
+            </mat-card-content>
+        </div>  
+        <button mat-raised-button color="primary">View Generated Report</button>  
+      </mat-card>
+</div>
