@@ -1,1 +1,56 @@
-<p>ambulance-main works!</p>
+<div class="mainAmbulance">
+            <h2><b>Table of Requests</b></h2>
+    <div class="tableCard">
+    <mat-card>
+            <mat-card-content class="requestCard">
+            <div  class="tableView">    
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <ng-container matColumnDef="patientName">
+                        <th mat-header-cell *matHeaderCellDef> Patient Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.patientName}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="timeOfRequest">
+                        <th mat-header-cell *matHeaderCellDef> Time Of Request </th>
+                            <td mat-cell *matCellDef="let element"> {{element.timeOfRequest}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="viewCase">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                            <td mat-cell *matCellDef="let element">
+                                <button mat-button color="primary">View Case</button>
+                            </td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            </mat-card-content>
+    </mat-card>
+    </div>         
+    <div class="caseCard">
+    <mat-card>    
+            <mat-card-content>
+                <div class="caseDetails">
+                    <label>Name:</label>
+                    <br>
+                    <label>Age:</label>
+                    <br>
+                    <label>Gender:</label>
+                    <br>
+                    <label>Medical History:</label>
+                    <br>
+                    <label>Location:</label>
+                    <br>
+                    <label>Request Type:</label>
+                    <br>
+                    <label>Closest Hospital:</label>
+                    <br>
+                </div>
+                <br>
+            <div><button mat-raised-button color="primary">Get Report</button></div>
+            </mat-card-content>
+    </mat-card>
+    </div>   
+</div>  
