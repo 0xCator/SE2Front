@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title><mat-icon *ngIf="isPaired">{{stateIcon}}</mat-icon> {{fullName}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div *ngIf="isPaired">
+            <mat-card-subtitle>Heart Rate: </mat-card-subtitle> <b>{{heartRate}}</b>
+            <mat-card-subtitle>Blood Pressure: </mat-card-subtitle> <b>{{bloodPressure}}</b>
+        </div>
+        <div *ngIf="!isPaired">
+            <mat-card-subtitle>Not Paired</mat-card-subtitle>
+        </div>
+    </mat-card-content>
+    <mat-card-footer>
+        <div *ngIf="isPaired">
+            <mat-progress-bar mode="indeterminate" [color]="colorState"></mat-progress-bar>
+        </div>
+        <div *ngIf="!isPaired">
+            <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
+        </div>
+    </mat-card-footer>
+</mat-card>

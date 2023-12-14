@@ -12,6 +12,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,6 +41,7 @@ import {MatMenuModule} from "@angular/material/menu";
 
 
 import { environment } from "../environments/environment";
+import { RelativeBlockComponent } from './Components/relative-block/relative-block.component';
 
 
 @NgModule({
@@ -61,6 +63,7 @@ import { environment } from "../environments/environment";
     PatientMainComponent,
     ManageRelativesComponent,
     MedicalHistoryComponent,
+    RelativeBlockComponent,
   ],
   imports: [
     HttpClientModule,
@@ -83,7 +86,8 @@ import { environment } from "../environments/environment";
     GoogleMapsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireMessagingModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatProgressBarModule
   ],
   providers: [NotificationService],
   bootstrap: [AppComponent]
