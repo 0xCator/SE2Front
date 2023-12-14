@@ -36,6 +36,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireMessagingModule} from "@angular/fire/compat/messaging";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {NotificationService} from "./Services/notification.service";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 import { environment } from "../environments/environment";
@@ -77,6 +78,7 @@ import { environment } from "../environments/environment";
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
+    MatMenuModule,
     ReactiveFormsModule,
     GoogleMapsModule,
     AngularFireModule.initializeApp(environment.firebase),

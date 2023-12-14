@@ -11,6 +11,8 @@ export interface userModel {
         gender: string;
         email: string;
     };
+    notificationsToken: string;
+    notifications: [];
     patientData: {
         state: number;
         token: string;
@@ -50,7 +52,7 @@ export class User {
     constructor(userID: any, private userService: UserService) {
         this.userID = userID;
     }
-    
+
     getData() {
         return this.userService.getUserData(this.userID);
     }

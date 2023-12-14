@@ -53,7 +53,7 @@ export class LoginSignComponent implements OnInit{
   }
 
   onLoginSubmit(){
-    
+
     this.service.login(this.loginForm.value.username.toLowerCase(), djb2a(this.loginForm.value.password)).subscribe(
       {
         next: (data)=> {
@@ -83,6 +83,8 @@ export class LoginSignComponent implements OnInit{
             'username': this.registerForm.value.username.toLowerCase(),
             'password': djb2a(this.registerForm.value.password),
             'userType': 2,
+            'notificationsToken': "",
+            'notifications': [],
             'userInfo': {
               'fullName': this.registerForm.value.fullName,
               'age': this.registerForm.value.age,
@@ -121,12 +123,12 @@ export class LoginSignComponent implements OnInit{
     });
   }
 
-  numSequence(): Array<number> { 
+  numSequence(): Array<number> {
     let ageSequence = new Array();
     for (let i = 15; i<=90; i++)
       ageSequence.push(i);
     return ageSequence;
-  } 
+  }
 
   randomNumber(): string {
     return String(Math.floor(Math.random() * 100) + 1)
