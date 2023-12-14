@@ -1,1 +1,10 @@
-<p>admin-main works!</p>
+<google-map height="100%"
+            width="100%"
+            [options]="mapOptions">
+
+
+            <map-marker *ngFor="let hospital of hospitalList"
+            [position]="{lng: hospital.longitude!, lat: hospital.latitude!}">
+
+            </map-marker>
+</google-map>
