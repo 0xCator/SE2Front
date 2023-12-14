@@ -27,8 +27,12 @@ export class UserService {
     return this.http.patch(BASEURL+userID+'/medicalHistory', {'medicalHistory':newHistory});
   }
 
+  assignRelative(userID: any, relativeUsername: string) {
+    return this.http.patch(BASEURL+userID+'/addRelatives/', {relativeUsername: relativeUsername});
+  }
+
   unassignRelative(userID: any, relativeUsername: string) {
-    return this.http.patch(BASEURL+userID+'/Relatives/', {'relativeUsername': relativeUsername});
+    return this.http.patch(BASEURL+userID+'/removeRelatives/', {'relativeUsername': relativeUsername});
   }
 
   unassignPatient(relativeUsername: string, patientUsername: string) {

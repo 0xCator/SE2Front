@@ -1,6 +1,6 @@
 <div class="addRelative">
     <div class="add">
-    <button mat-raised-button color="primary" (click)="disabled=true">Add Relative</button>
+    <button mat-raised-button color="primary" (click)="disabled=!disabled">Add Relative</button>
     </div>
 <div class="relativeView">
     <ng-container *ngIf="disabled" [formGroup]="formgroup" class="cardInput">
@@ -8,7 +8,8 @@
             <mat-label>Enter Username</mat-label>
             <input matInput formControlName="username" required>
         </mat-form-field>
-        <button mat-raised-button color="primary" class="submitBtn" (click)="disabled=false" [disabled]="formgroup.invalid">Submit</button>
+        <button mat-raised-button color="primary" class="submitBtn" (click)="onSubmit()" [disabled]="formgroup.invalid">Submit</button>
+        <mat-error>{{creationError}}</mat-error>
     </ng-container>
 </div>
 

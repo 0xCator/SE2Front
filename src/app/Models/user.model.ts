@@ -57,6 +57,10 @@ export class User {
         return this.userService.getUserData(this.userID);
     }
 
+    removeRelative(username: string) {
+        return this.userService.unassignRelative(this.userID, username);
+    }
+
     updateMedicalHistory(message: string) {
         return this.userService.updateMedicalHistory(this.userID, message);
     }
