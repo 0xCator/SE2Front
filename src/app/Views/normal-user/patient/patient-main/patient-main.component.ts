@@ -40,4 +40,8 @@ export class PatientMainComponent implements OnInit{
       }
     })
   }
+
+  getReport() {
+    this.currentUser?.generateReport();
+  }
 }
