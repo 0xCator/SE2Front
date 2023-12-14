@@ -10,7 +10,8 @@
     <mat-menu #notificationMenu="matMenu">
       <div class="menu-content">
         <button mat-menu-item *ngFor="let notification of notifications">
-          {{ notification.title}}
+          {{ notification.title}}<br>
+          <small>{{ notification.body}}</small>
         </button>
       </div>
     </mat-menu>
