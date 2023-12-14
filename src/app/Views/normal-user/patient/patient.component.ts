@@ -5,5 +5,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './patient.component.html',
   styleUrls: ['./patient.component.css']
 })
-export class PatientComponent{
+export class PatientComponent {
 }
