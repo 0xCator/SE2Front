@@ -44,6 +44,7 @@ export interface readingModel {
 }
 
 import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable';
 export class User {
     userID: any;
     constructor(userID: any, private userService: UserService) {
@@ -59,7 +60,7 @@ export class User {
     }
 
     generateReport() {
-        let doc = new jsPDF();
+        let doc = new jsPDF({ putOnlyUsedFonts: true, orientation: "landscape" });
         this.userService.getUserData(this.userID).subscribe({
             next: (val) => {
                 let fullName = val.userInfo.fullName;
@@ -68,25 +69,26 @@ export class User {
                 this.userService.getReadings(this.userID).subscribe({
                     next: (val) => {
                         //Info card
-                        doc.rect(20, 20, 170, 20);
-                        doc.text("Name: "+fullName+", Age: "+age+", Gender: "+gender, 25, 30);
-                        let readingString = '';
-                        let index = 0;
-                        let page = 1;
-                        val.forEach((val)=>{
-                            index++;
-                            if (index > 37) {
-                                doc.text(readingString, 20, (page==1) ? 50 : 20);
-
-                            }
-                            readingString += val.createdAt.slice(0, 10) + " - HeartRate: " + val.heartRate + 
-                            " - Blood Pressure: " + val.bloodPressure.systolic + "/" + val.bloodPressure.diastolic + "\n";
+                        doc.text("Name: "+fullName+"\t\tAge: "+age+"\t\tGender: "+gender, 40, 30);
+                        autoTable(doc, {
+                            head: [['Day', 'Time', 'Heart rate', 'Blood pressure']],
+                            body: this.generateTable(val),
+                            startY: 45
                         });
-                        
                         doc.save("report.pdf");
                     }
                 })
             }
         })
     }
+
+    //Report-related helper functions
+      private generateTable(val: readingModel[]) {
+        var result: any[] = [];
+        val.forEach((i)=>{
+            let element = [i.createdAt.slice(0,10),i.createdAt.slice(11, 19),i.heartRate,i.bloodPressure.systolic+"/"+i.bloodPressure.diastolic]
+            result.push(element)
+        })
+        return result;
+      }
 }
