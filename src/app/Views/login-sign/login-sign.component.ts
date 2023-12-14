@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/Services/login.service';
   templateUrl: './login-sign.component.html',
   styleUrls: ['./login-sign.component.css']
 })
-export class LoginSignComponent{
+export class LoginSignComponent implements OnInit{
   isLogin: boolean = true;
   loginForm: FormGroup;
   registerForm: FormGroup;
@@ -29,6 +29,23 @@ export class LoginSignComponent{
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
+  }
+
+  ngOnInit(): void {
+    let currentType = localStorage.getItem('userType')
+      if (currentType !== null) {
+        switch(currentType) {
+          case '0':
+            this.router.navigate(['admin']);
+          break;
+          case '1':
+            this.router.navigate(['ambulance-manager']);
+          break;
+          case '2':
+            this.router.navigate(['user']);
+          break;
+        }
+      }
   }
 
   toggleForm(){

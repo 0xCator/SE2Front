@@ -4,7 +4,7 @@
     <button mat-flat-button color="primary" [routerLink]="['patient']">Patient</button>
     <button mat-flat-button *ngIf="isRelative" color="primary" [routerLink]="['relative']">Relative</button>
     <span class="spacer"></span>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="logOut()">
         <mat-icon fontIcon="logout"></mat-icon>
     </button>
 </mat-toolbar>
