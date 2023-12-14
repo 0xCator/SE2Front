@@ -11,6 +11,11 @@
     list-style-type: none;
     max-height: 400px;
     width: 300px;
+    margin-bottom: 10px;
+}
+
+.menu-content button {
+  margin-bottom: 20px;
 }
 
 :host ::ng-deep .mat-menu-item {
