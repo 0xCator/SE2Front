@@ -6,7 +6,7 @@
             <div  class="tableView">    
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
                     <ng-container matColumnDef="patientName">
-                        <th mat-header-cell *matHeaderCellDef> Patient Name </th>
+                        <th mat-header-cell *matHeaderCellDef> Patient ID </th>
                             <td mat-cell *matCellDef="let element"> {{element.patientName}} </td>
                     </ng-container>
             
@@ -32,24 +32,33 @@
     <div class="caseCard" *ngIf="showCase">
     <mat-card>    
             <mat-card-content>
+                <google-map height="200" [center]="center" [zoom]=12>
+                    <map-marker [position]="{lat: caseData.location.latitude, lng: caseData.location.longitude}"
+                                [options]="{icon: caseData.userIcon}">
+                    </map-marker>
+                    <map-marker [position]="{lat: caseData.carLocation.latitude, lng: caseData.carLocation.longitude}"
+                                [options]="{icon: '../../../../assets/Icons/ambcarMoving.png'}">
+                    </map-marker>
+
+                </google-map>
                 <div class="caseDetails">
-                    <label>Name:</label>
+                    <label><b>Name:</b> {{caseData.name}}</label>
                     <br>
-                    <label>Age:</label>
+                    <label><b>Age:</b> {{caseData.age}}</label>
                     <br>
-                    <label>Gender:</label>
+                    <label><b>Gender:</b> {{caseData.gender}}</label>
                     <br>
-                    <label>Medical History:</label>
+                    <label><b>Medical History:</b> {{caseData.medicalHistory}}</label>
                     <br>
-                    <label>Location:</label>
+                    <label><b>Location:</b> {{caseData.location.longitude + " - " + caseData.location.latitude}}</label>
                     <br>
-                    <label>Request Type:</label>
+                    <label><b>Request Type:</b> {{caseData.requestType}}</label>
                     <br>
-                    <label>Closest Hospital:</label>
+                    <label><b>Closest Hospital:</b> {{caseData.closestHospital}}</label>
                     <br>
                 </div>
                 <br>
-            <div><button mat-raised-button color="primary">Get Report</button></div>
+            <div><button mat-raised-button (click)="getUserReport()" color="primary">Get Report</button></div>
             </mat-card-content>
     </mat-card>
     </div>   
