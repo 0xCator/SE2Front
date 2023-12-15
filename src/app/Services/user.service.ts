@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { userModel, readingModel } from '../Models/user.model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const BASEURL = 'http://localhost:3000/api/users/';
 
@@ -9,6 +9,9 @@ const BASEURL = 'http://localhost:3000/api/users/';
   providedIn: 'root'
 })
 export class UserService {
+  private usersSubject: BehaviorSubject<userModel[]> = new BehaviorSubject<userModel[]>([]);
+  public users$: Observable<userModel[]> = this.usersSubject.asObservable();
+  
   constructor(private http: HttpClient) { }
   
   getUserData(userID: any): Observable<userModel> {
@@ -41,5 +44,13 @@ export class UserService {
 
   deleteUser(userID: any) {
     return this.http.delete(BASEURL+userID);
+  }
+
+  fetchPatientsData() {
+    this.http.get<userModel[]>(BASEURL+'/patients').subscribe((data) => {
+      if (this.usersSubject.value.length !== data.length){
+        this.usersSubject.next(data);
+      }
+    });
   }
 }

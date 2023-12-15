@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CarModel } from '../Models/car.model';
 
@@ -8,6 +8,8 @@ const BASEURL = 'http://localhost:3000/api/cars';
   providedIn: 'root'
 })
 export class CarService {
+  private carsSubject: BehaviorSubject<CarModel[]> = new BehaviorSubject<CarModel[]>([]);
+  public cars$: Observable<CarModel[]> = this.carsSubject.asObservable();
   
   constructor(private http: HttpClient) { }
 
@@ -31,4 +33,11 @@ export class CarService {
     return this.http.delete<CarModel>(BASEURL+"/"+carID);
   }
   
+  fetchCarsData() {
+    this.http.get<CarModel[]>(BASEURL).subscribe((data) => {
+      if (this.carsSubject.value.length !== data.length){
+        this.carsSubject.next(data);
+      }
+    });
+  }
 }

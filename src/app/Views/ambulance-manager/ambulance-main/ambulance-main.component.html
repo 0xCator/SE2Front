@@ -32,7 +32,11 @@
     <div class="caseCard" *ngIf="showCase">
     <mat-card>    
             <mat-card-content>
-                <google-map height="200" [center]="center" [zoom]=12>
+                <google-map #googleMap (mapInitialized)="onMapReady($event)" height="200" [zoom]=12 [options]="mapOptions">
+                    <map-directions-renderer *ngIf="(directionsResults$ | async) as directionsResults"
+                           [directions]="directionsResults" [options]="{markerOptions: {
+                            clickable: false, opacity: 0.0
+                           }}"></map-directions-renderer>
                     <map-marker [position]="{lat: caseData.location.latitude, lng: caseData.location.longitude}"
                                 [options]="{icon: caseData.userIcon}">
                     </map-marker>

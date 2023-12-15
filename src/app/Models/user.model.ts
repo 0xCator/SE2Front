@@ -47,10 +47,29 @@ export interface readingModel {
 
 import { jsPDF } from "jspdf";
 import autoTable from 'jspdf-autotable';
+import { timer } from 'rxjs';
 export class User {
     userID: any;
+    userData!: userModel;
+    userIcon: string = '../../../../assets/Icons/userNormal.png';
     constructor(userID: any, private userService: UserService) {
         this.userID = userID;
+        timer(0, 500).subscribe((val)=>{
+            this.userService.getUserData(this.userID).subscribe((val)=>{
+                this.userData = val;
+                switch(val.patientData.state) {
+                    case 0:
+                        this.userIcon = '../../../../assets/Icons/userNormal.png';
+                    break;
+                    case 1:
+                        this.userIcon = '../../../../assets/Icons/userWarning.png';
+                    break;
+                    case 2:
+                        this.userIcon = '../../../../assets/Icons/userCritical.png';
+                    break;
+                }
+            });
+        })
     }
 
     getData() {

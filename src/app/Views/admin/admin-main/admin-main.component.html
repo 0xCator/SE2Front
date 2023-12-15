@@ -1,10 +1,24 @@
 <google-map height="100%"
             width="100%"
-            [options]="mapOptions">
+            [options]="mapOptions" [center]="center" [zoom]=15>
+            <map-marker *ngFor="let userKey of userMap.keys()"
+            #marker="mapMarker"
+            [position]="{lng: userMap.get(userKey)?.userData?.patientData?.patientReadings?.location?.longitude!,
+                        lat: userMap.get(userKey)?.userData?.patientData?.patientReadings?.location?.latitude!}"
+            [options]="{icon: userMap.get(userKey)?.userIcon}"
+            (mapClick)="openInfoWindow(marker, userMap.get(userKey), 2)"></map-marker>
 
+            <map-marker *ngFor="let carKey of carMap.keys()"
+            #marker="mapMarker"
+            [position]="{lng: carMap.get(carKey)?.location?.longitude!, lat: carMap.get(carKey)?.location?.latitude!}"
+            [options]="{icon: carMap.get(carKey)?.carIcon}"
+            (mapClick)="openInfoWindow(marker, carMap.get(carKey), 1)"></map-marker>
 
             <map-marker *ngFor="let hospital of hospitalList"
-            [position]="{lng: hospital.longitude!, lat: hospital.latitude!}">
+            #marker="mapMarker"
+            [position]="{lng: hospital.longitude!, lat: hospital.latitude!}"
+            [options]="{icon: '../../../../assets/Icons/hospital.png'}"
+            (mapClick)="openInfoWindow(marker, hospital, 0)"></map-marker>
 
-            </map-marker>
+            <map-info-window [innerHTML]="infoContent"></map-info-window>
 </google-map>

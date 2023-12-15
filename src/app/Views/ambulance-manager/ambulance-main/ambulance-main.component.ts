@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { timer } from 'rxjs';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { GoogleMap, MapDirectionsRenderer, MapDirectionsService } from '@angular/google-maps';
+import { Observable, map, timer } from 'rxjs';
 import { RequestModel } from 'src/app/Models/request.model';
 import { User } from 'src/app/Models/user.model';
 import { CarService } from 'src/app/Services/cars.service';
@@ -36,7 +37,7 @@ export interface CaseData {
   templateUrl: './ambulance-main.component.html',
   styleUrls: ['./ambulance-main.component.css']
 })
-export class AmbulanceMainComponent implements OnInit{
+export class AmbulanceMainComponent implements OnInit, AfterViewInit{
   displayedColumns: string[] = ['patientName', 'timeOfRequest', 'viewCase'];
   dataSource?: any;
   showCase=false;
@@ -64,12 +65,110 @@ export class AmbulanceMainComponent implements OnInit{
   center: google.maps.LatLngLiteral = {
     lat: 29.96197758406346, lng: 31.270859053324683
   };
+  directionsResults$!: Observable<google.maps.DirectionsResult|undefined>;
+
+  googleMap!: google.maps.Map;
+  
+  mapOptions: google.maps.MapOptions = {
+    mapTypeControl: false, 
+    streetViewControl: false,
+    styles: [{
+      elementType: "geometry",
+      stylers: [{ color: "#f5f5f5" }],
+    },
+    {
+      elementType: "labels.icon",
+      stylers: [{ visibility: "off" }],
+    },
+    {
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#616161" }],
+    },
+    {
+      elementType: "labels.text.stroke",
+      stylers: [{ color: "#f5f5f5" }],
+    },
+    {
+      featureType: "administrative.land_parcel",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#bdbdbd" }],
+    },
+    {
+      featureType: "poi",
+      elementType: "geometry",
+      stylers: [{ color: "#eeeeee" }],
+    },
+    {
+      featureType: "poi",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#757575" }],
+    },
+    {
+      featureType: "poi.park",
+      elementType: "geometry",
+      stylers: [{ color: "#e5e5e5" }],
+    },
+    {
+      featureType: "poi.park",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#9e9e9e" }],
+    },
+    {
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [{ color: "#ffffff" }],
+    },
+    {
+      featureType: "road.arterial",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#757575" }],
+    },
+    {
+      featureType: "road.highway",
+      elementType: "geometry",
+      stylers: [{ color: "#dadada" }],
+    },
+    {
+      featureType: "road.highway",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#616161" }],
+    },
+    {
+      featureType: "road.local",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#9e9e9e" }],
+    },
+    {
+      featureType: "transit.line",
+      elementType: "geometry",
+      stylers: [{ color: "#e5e5e5" }],
+    },
+    {
+      featureType: "transit.station",
+      elementType: "geometry",
+      stylers: [{ color: "#eeeeee" }],
+    },
+    {
+      featureType: "water",
+      elementType: "geometry",
+      stylers: [{ color: "#c9c9c9" }],
+    },
+    {
+      featureType: "water",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#9e9e9e" }],
+    },]
+ }
 
   constructor(private requestService: RequestService, private userService: UserService, private hospitalService: HospitalService,
-    private carService: CarService) {}
+    private carService: CarService, private mapDirectionsService: MapDirectionsService) {}
 
   ngOnInit(): void {
       this.fillGroup();
+  }
+
+  ngAfterViewInit(): void {
+      console.log(this.googleMap);
   }
 
   viewCase(caseID:any){
@@ -95,6 +194,10 @@ export class AmbulanceMainComponent implements OnInit{
     )
   }
 
+  onMapReady(map: google.maps.Map) {
+    this.googleMap = map;
+  }
+
   getUserReport() {
     this.currentUser?.generateReport();
   }
@@ -103,9 +206,20 @@ export class AmbulanceMainComponent implements OnInit{
     this.carService.getCar(carID).subscribe(
       (val)=>{
         this.caseData.carLocation = val.currentLocation;
-        this.center.lat = this.caseData.location.latitude //Math.abs((this.caseData.carLocation.latitude! + this.caseData.location.latitude) / 2);
-        this.center.lng = this.caseData.location.longitude //Math.abs((this.caseData.carLocation.longitude! + this.caseData.location.longitude) / 2);
-        console.log(this.center);
+        this.center.lat = Math.abs((this.caseData.carLocation.latitude! + this.caseData.location.latitude) / 2);
+        this.center.lng = Math.abs((this.caseData.carLocation.longitude! + this.caseData.location.longitude) / 2);
+        this.googleMap.setCenter(this.center);
+        let bounds = new google.maps.LatLngBounds();
+        bounds.extend(new google.maps.LatLng({lat: this.caseData.carLocation.latitude, lng: this.caseData.carLocation.longitude}))
+        bounds.extend(new google.maps.LatLng({lat: this.caseData.location.latitude, lng: this.caseData.location.longitude}))
+        this.googleMap.fitBounds(bounds, 15);
+
+        const request: google.maps.DirectionsRequest = {
+          destination: {lat: this.caseData.carLocation.latitude, lng: this.caseData.carLocation.longitude},
+          origin: {lat: this.caseData.location.latitude, lng: this.caseData.location.longitude},
+          travelMode: google.maps.TravelMode.DRIVING
+        };
+        this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map(response => response.result));
       }
     );
   }
