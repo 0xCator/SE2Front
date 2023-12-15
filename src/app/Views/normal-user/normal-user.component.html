@@ -9,7 +9,7 @@
     </button>
     <mat-menu #notificationMenu="matMenu">
       <div class="menu-content">
-        <button mat-menu-item *ngFor="let notification of notifications">
+        <button mat-menu-item *ngFor="let notification of notifications" (click)="handleNotification(notification)">
           {{ notification.title}}<br>
           <small>{{ notification.body}}</small>
         </button>
