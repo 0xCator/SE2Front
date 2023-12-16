@@ -44,7 +44,8 @@ export class ViewUsersComponent implements OnInit{
   }
 
   removeUser(userID: any){
-    this.userService.deleteUser(userID).subscribe();
-    this.fillGroup();
+    this.userService.deleteUser(userID).subscribe((val)=>{
+      this.fillGroup();
+    });
   }
 }

@@ -3,9 +3,11 @@ import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { timer, Observable, mergeMap, share, switchMap, Subscription, distinctUntilChanged, debounceTime, throttleTime, interval, map } from 'rxjs';
 import { Car } from 'src/app/Models/car.model';
 import { Hospital } from 'src/app/Models/hospital.model';
+import { RequestModel } from 'src/app/Models/request.model';
 import { User } from 'src/app/Models/user.model';
 import { CarService } from 'src/app/Services/cars.service';
 import { HospitalService } from 'src/app/Services/hospital.service';
+import { RequestService } from 'src/app/Services/request.service';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -113,14 +115,16 @@ export class AdminMainComponent implements OnInit{
  private hospitalsSubscription!: Subscription;
  private carsSubscription!: Subscription;
  private usersSubscription!: Subscription;
+ private requestSubscription!: Subscription;
   infoContent= '';
   currentSelection?: any;
   selectionType = 0;
  hospitalList?: Hospital[];
  carMap!: Map<String, Car>;
  userMap!: Map<String, User>;
+ requestMap!: Map<String, RequestModel>
  constructor(private hospitalService: HospitalService, private carService: CarService,
-  private userService: UserService) {}
+  private userService: UserService, private requestService: RequestService) {}
 
  ngOnInit(): void {
   this.hospitalsSubscription = this.hospitalService.hospitals$.subscribe((data) => {
@@ -137,6 +141,14 @@ export class AdminMainComponent implements OnInit{
     data.forEach((currentUser)=>{
       this.userMap.set(currentUser._id, new User(currentUser._id, this.userService));
     })
+  this.requestSubscription = this.requestService.requests$.subscribe((data)=>{
+    this.requestMap = new Map();
+    data.forEach((currentRequest)=>{
+      let req = currentRequest;
+      req.carLocation = this.carMap.get(currentRequest.carID)?.location;
+      this.requestMap.set(currentRequest._id, req);
+    })
+  })
 
   });
   timer(0,500).subscribe(
@@ -144,6 +156,7 @@ export class AdminMainComponent implements OnInit{
       this.hospitalService.fetchHospitalData();
       this.carService.fetchCarsData();
       this.userService.fetchPatientsData();
+      this.requestService.fetchRequestData();
       this.setWindow();
     }
   )

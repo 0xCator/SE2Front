@@ -90,8 +90,9 @@ export class ManageCarsComponent implements OnInit {
   }
 
   onRemove(carID: any) {
-    this.carService.deleteCar(carID).subscribe();
-    this.fillGroup();
+    this.carService.deleteCar(carID).subscribe((val)=>{
+      this.fillGroup();
+    });
   }
 
   uniqueCar(currentCars: CarModel[], licensePlate: string) {

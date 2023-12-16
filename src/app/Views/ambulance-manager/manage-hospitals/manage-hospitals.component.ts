@@ -74,8 +74,9 @@ export class ManageHospitalsComponent implements OnInit{
   }
 
   onRemove(hospitalID: any) {
-    this.hospitalService.deleteHospital(hospitalID).subscribe();
-    this.fillGroup();
+    this.hospitalService.deleteHospital(hospitalID).subscribe((val)=>{
+      this.fillGroup();
+    });
   }
 
   uniqueHospital(currentHospitals: Hospital[], longitude: number, latitude: number) {

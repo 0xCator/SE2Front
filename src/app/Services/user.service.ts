@@ -42,7 +42,7 @@ export class UserService {
     return this.http.patch(BASEURL+relativeUsername+'/Relatives/', {'patientUsername': patientUsername});
   }
 
-  deleteUser(userID: any) {
+  deleteUser(userID: any): Observable<any> {
     return this.http.delete(BASEURL+userID);
   }
 

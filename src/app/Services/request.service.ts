@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { RequestModel } from '../Models/request.model';
 
@@ -9,6 +9,8 @@ const BASEURL = 'http://localhost:3000/api/requests/';
   providedIn: 'root'
 })
 export class RequestService {
+  private requestsSubject: BehaviorSubject<RequestModel[]> = new BehaviorSubject<RequestModel[]>([]);
+  public requests$: Observable<RequestModel[]> = this.requestsSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -26,5 +28,13 @@ export class RequestService {
 
   delete(reqID: any) {
     return this.http.delete(BASEURL+reqID);
+  }
+
+  fetchRequestData() {
+    this.http.get<RequestModel[]>(BASEURL).subscribe((data) => {
+      if (this.requestsSubject.value.length !== data.length){
+        this.requestsSubject.next(data);
+      }
+    });
   }
 }

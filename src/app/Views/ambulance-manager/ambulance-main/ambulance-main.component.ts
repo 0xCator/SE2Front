@@ -185,8 +185,8 @@ export class AmbulanceMainComponent implements OnInit, AfterViewInit{
             this.caseData.requestType = value.requestType == 1 ? "Automated (Critical)" : "Manual (Warning)";
             this.caseData.medicalHistory = val.patientData.medicalHistory;
             this.caseData.location = val.patientData.patientReadings.location;
-            this.caseData.userIcon = value.requestType == 1 ? '../../../../assets/Icons/userWarning.png' : '../../../../assets/Icons/userCritical.png'
-            this.findClosestHospital();
+            this.caseData.userIcon = value.requestType == 1 ? '../../../../assets/Icons/userCritical.png' : '../../../../assets/Icons/userWarning.png'
+            this.caseData.closestHospital = value.hospital?.name!;
             this.getCarLocation(value.carID);
           }
         )
@@ -257,35 +257,4 @@ export class AmbulanceMainComponent implements OnInit, AfterViewInit{
       }
     )
   }
-
-  private findClosestHospital() {
-    this.hospitalService.getAllHospitals().subscribe(
-      (val)=>{
-        let minDistance = Number.MAX_VALUE;
-        val.forEach((hospital)=>{
-          let dist = this.haversine(this.caseData.location.latitude, this.caseData.location.longitude, hospital.latitude!, hospital.longitude!);
-          if (dist < minDistance) {
-            minDistance = dist;
-            this.caseData.closestHospital = hospital.name!;
-          }
-        })
-      }
-    )
-  }
-
-  private haversine(lat1: number, lon1: number, lat2: number, lon2: number) {
-    let R = 6372.8; // in kilometers
-    let dLat = this.degToRad(lat2 - lat1);
-    let dLon = this.degToRad(lon2 - lon1);
-    lat1 = this.degToRad(lat1);
-    lat2 = this.degToRad(lat2);
-
-    let a = Math.pow(Math.sin(dLat / 2),2) + Math.pow(Math.sin(dLon / 2),2) * Math.cos(lat1) * Math.cos(lat2);
-    let c = 2 * Math.asin(Math.sqrt(a));
-    return R * c;
-  }
-
-  private degToRad = (deg: number): number => {
-    return deg * (Math.PI / 180.0);
-  };
 }

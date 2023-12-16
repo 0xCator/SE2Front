@@ -1,12 +1,27 @@
 <google-map height="100%"
             width="100%"
             [options]="mapOptions" [center]="center" [zoom]=15>
-            <map-marker *ngFor="let userKey of userMap.keys()"
-            #marker="mapMarker"
-            [position]="{lng: userMap.get(userKey)?.userData?.patientData?.patientReadings?.location?.longitude!,
-                        lat: userMap.get(userKey)?.userData?.patientData?.patientReadings?.location?.latitude!}"
-            [options]="{icon: userMap.get(userKey)?.userIcon}"
-            (mapClick)="openInfoWindow(marker, userMap.get(userKey), 2)"></map-marker>
+            
+            <map-polyline *ngFor="let reqKeys of requestMap.keys()"
+            [path]="[{
+                lat: requestMap.get(reqKeys)?.location?.latitude!,
+                lng: requestMap.get(reqKeys)?.location?.longitude!
+            },{
+                lat: requestMap.get(reqKeys)?.hospital?.location?.latitude!,
+                lng: requestMap.get(reqKeys)?.hospital?.location?.longitude!
+            },{
+                lat: requestMap.get(reqKeys)?.carLocation?.latitude!,
+                lng: requestMap.get(reqKeys)?.carLocation?.longitude!
+            }]"></map-polyline>
+
+            <div *ngFor="let userKey of userMap.keys()">
+                <map-marker *ngIf="userMap.get(userKey)?.userData?.patientData?.pairedBracelet! !== '-1'"
+                #marker="mapMarker"
+                [position]="{lng: userMap.get(userKey)?.userData?.patientData?.patientReadings?.location?.longitude!,
+                            lat: userMap.get(userKey)?.userData?.patientData?.patientReadings?.location?.latitude!}"
+                [options]="{icon: userMap.get(userKey)?.userIcon}"
+                (mapClick)="openInfoWindow(marker, userMap.get(userKey), 2)"></map-marker>
+            </div>
 
             <map-marker *ngFor="let carKey of carMap.keys()"
             #marker="mapMarker"
