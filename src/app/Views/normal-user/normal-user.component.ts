@@ -56,12 +56,12 @@ export class NormalUserComponent {
   handleNotification(notification: Notification){
     if(this.notifications[0] === notification){
       if(notification.title === "Be careful!"){
-        this.sendRequest();
+        this.manualRequest();
       }
     }
   }
 
-  private findClosestHospital(){
+  private manualRequest(){
     this.hospitalService.getAllHospitals().subscribe(
       (val)=>{
         let minDistance = Number.MAX_VALUE;
@@ -73,6 +73,8 @@ export class NormalUserComponent {
             this.nearestHospital = hospital;
           }
         })
+        console.log(this.nearestHospital);
+        this.sendRequest();
       }
     )
   }
@@ -94,7 +96,6 @@ export class NormalUserComponent {
   };
   sendRequest(){
     const api = 'http://localhost:3000/api/requests';
-    this.findClosestHospital();
     const body = {
       userID:this.currentUser?.userID,
       location:this.location,
