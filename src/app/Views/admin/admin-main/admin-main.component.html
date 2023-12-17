@@ -7,11 +7,11 @@
                 lat: requestMap.get(reqKeys)?.location?.latitude!,
                 lng: requestMap.get(reqKeys)?.location?.longitude!
             },{
-                lat: requestMap.get(reqKeys)?.hospital?.location?.latitude!,
-                lng: requestMap.get(reqKeys)?.hospital?.location?.longitude!
-            },{
                 lat: requestMap.get(reqKeys)?.carLocation?.latitude!,
                 lng: requestMap.get(reqKeys)?.carLocation?.longitude!
+            },{
+                lat: requestMap.get(reqKeys)?.hospital?.location?.latitude!,
+                lng: requestMap.get(reqKeys)?.hospital?.location?.longitude!
             }]"></map-polyline>
 
             <div *ngFor="let userKey of userMap.keys()">
