@@ -172,6 +172,9 @@ export class AdminMainComponent implements OnInit{
     if (this.usersSubscription) {
       this.usersSubscription.unsubscribe();
     }
+    if (this.requestSubscription) {
+      this.requestSubscription.unsubscribe();
+    }
   }
 
   openInfoWindow(marker: MapMarker, selection: any, type: number) {
