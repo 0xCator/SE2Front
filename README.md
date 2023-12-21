@@ -1,27 +1,20 @@
-# SE2Front
+# An Autonomous Fainting Attacks Savior System (frontend)
+This is repository contains the frontend part of our project for a Software Engineering 2 course, *an autonomous fainting attacks savior system*.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.8.
+The project contains 3 views:
+- Admin view
+- Ambulance manager view
+- Patient/Relative view
 
-## Development server
+The project also contains some *Google Maps* features and some real-time refreshing, through ``timer`` from RxJS.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The complete project requires the installation of the [backend](https://github.com/0xCator/SE2Back) and [bracelet simulation](https://github.com/0xCator/Bracelet-SE2) to work properly.
 
-## Code scaffolding
+## Quick start
+```
+$ npm i
+$ ng serve
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Note
+You must provide your Google Maps API Key, placing it in the ``index.html`` file (at line 12).
